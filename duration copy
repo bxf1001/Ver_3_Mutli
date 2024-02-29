@@ -1,0 +1,40 @@
+import time
+import keyboard
+
+def pre_check():
+    print("Pre-check function: Starting pre-check...")
+    # Your pre-check logic here
+    print("Pre-check function: Pre-check completed.")
+
+def duration():
+    print("Duration function: Starting duration...")
+    total_duration = 1200  # Total duration in seconds
+    start_time = time.time()
+    while True:
+        current_time = time.time()
+        elapsed_time = current_time - start_time
+        remaining_duration = total_duration - elapsed_time
+        if remaining_duration <= 0:
+            break
+        # Your duration logic here
+        if elapsed_time >= 600:
+            print("Duration function: Breaking due to condition.")
+            break
+        # Check for Escape key press
+        if keyboard.is_pressed("esc"):
+            print(f"Duration function: Esc key pressed. Remaining duration: {remaining_duration:.2f} seconds")
+            start_time = time.time()  # Reset start time
+    print("Duration function: Duration completed.")
+
+def post_check():
+    print("Post-check function: Starting post-check...")
+    # Your post-check logic here
+    print("Post-check function: Post-check completed.")
+
+def main():
+    pre_check()
+    duration()
+    post_check()
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,21 @@
+from pynput import keyboard
+
+class SpaceBarListener:
+    def __init__(self):
+        self.listener = keyboard.Listener(on_press=self.on_press)
+        self.space_pressed = False
+
+    def on_press(self, key):
+        if key == keyboard.Key.space:
+            print("Space bar pressed. Exiting the program.")
+            self.space_pressed = True
+            return False  # Stop listening
+
+    def start(self):
+        print("Press the space bar to break:")
+        self.listener.start()
+        self.listener.join()
+
+if __name__ == "__main__":
+    space_listener = SpaceBarListener()
+    space_listener.start()
